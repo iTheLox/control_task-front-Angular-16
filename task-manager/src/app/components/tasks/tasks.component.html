@@ -1,0 +1,27 @@
+<div class="tasks-container">
+  <div class="header">
+    <h1>Mis Tareas</h1>
+    <div class="header-actions">
+      <button class="btn-create" (click)="goToCreate()">+ Nueva Tarea</button>
+      <button class="btn-logout" (click)="logout()">Cerrar Sesión</button>
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading">Cargando tareas...</div>
+  <div *ngIf="error && !loading" class="error-message">{{ error }}</div>
+  <div *ngIf="!loading && tasks.length === 0" class="no-tasks"><p>No tienes tareas aún. ¡Crea una nueva!</p></div>
+
+  <div class="tasks-list">
+    <div *ngFor="let task of tasks" class="task-item" [class.completed]="task.completed">
+      <div class="task-content">
+        <input type="checkbox" [checked]="task.completed" (change)="toggleTask(task)" class="task-checkbox" />
+        <div class="task-info">
+          <h3 [class.completed-text]="task.completed">{{ task.title }}</h3>
+          <p *ngIf="task.description">{{ task.description }}</p>
+          <small *ngIf="task.created_at">{{ task.created_at | date: 'short' }}</small>
+        </div>
+      </div>
+      <button class="btn-delete" (click)="deleteTask(task.id)">🗑️ Eliminar</button>
+    </div>
+  </div>
+</div>

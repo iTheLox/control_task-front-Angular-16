@@ -1,0 +1,147 @@
+.tasks-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  margin: 0;
+  color: #333;
+}
+
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-create, .btn-logout, .btn-delete {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-create {
+  background-color: #667eea;
+  color: white;
+}
+
+.btn-create:hover {
+  background-color: #5568d3;
+}
+
+.btn-logout {
+  background-color: #f5576c;
+  color: white;
+}
+
+.btn-logout:hover {
+  background-color: #d63447;
+}
+
+.btn-delete {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 8px 15px;
+  font-size: 12px;
+}
+
+.btn-delete:hover {
+  background-color: #ee5a52;
+}
+
+.loading, .error-message, .no-tasks {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.error-message {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.no-tasks {
+  color: #666;
+}
+
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.task-item {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-left: 4px solid #667eea;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+}
+
+.task-item.completed {
+  background-color: #f0f0f0;
+  border-left-color: #28a745;
+}
+
+.task-content {
+  display: flex;
+  gap: 15px;
+  flex: 1;
+}
+
+.task-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.task-info {
+  flex: 1;
+}
+
+.task-info h3 {
+  margin: 0 0 5px 0;
+  color: #333;
+}
+
+.task-info h3.completed-text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.task-info p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.task-info small {
+  color: #999;
+}

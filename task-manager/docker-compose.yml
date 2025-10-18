@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: task_manager_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: task_manager
+      MYSQL_USER: taskuser
+      MYSQL_PASSWORD: taskpass123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - task_network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: task_manager_backend
+    restart: always
+    environment:
+      MYSQL_HOST: db
+      MYSQL_USER: taskuser
+      MYSQL_PASSWORD: taskpass123
+      MYSQL_DATABASE: task_manager
+      FLASK_ENV: production
+      FLASK_APP: app.py
+    ports:
+      - "5000:5000"
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - task_network
+    volumes:
+      - ./backend:/app
+
+  frontend:
+    build:
+      context: ./task-manager
+      dockerfile: Dockerfile
+    container_name: task_manager_frontend
+    restart: always
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    networks:
+      - task_network
+    environment:
+      - API_URL=http://backend:5000/api
+
+volumes:
+  mysql_data:
+
+networks:
+  task_network:
+    driver: bridge

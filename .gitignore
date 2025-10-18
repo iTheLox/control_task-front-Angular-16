@@ -1,0 +1,18 @@
+# Ignorar entornos virtuales de Python
+venv/
+*.pyc
+
+# Ignorar dependencias de Node
+node_modules/
+dist/
+
+# Ignorar archivos de configuración sensibles
+.env
+
+# Ignorar archivos específicos de OS
+.DS_Store
+Thumbs.db
+
+# Ignorar carpetas de Docker/Logs que no se necesiten
+__pycache__/
+*.log

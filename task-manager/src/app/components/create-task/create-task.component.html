@@ -1,0 +1,23 @@
+<div class="create-task-container">
+  <div class="create-task-card">
+    <h1>Crear Nueva Tarea</h1>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="title">Título *</label>
+        <input type="text" id="title" [(ngModel)]="title" name="title" placeholder="Ingresa el título de la tarea" required />
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <textarea id="description" [(ngModel)]="description" name="description" placeholder="Ingresa una descripción (opcional)" rows="6"></textarea>
+      </div>
+      <div *ngIf="error" class="error-message">{{ error }}</div>
+      <div *ngIf="success" class="success-message">{{ success }}</div>
+      <div class="button-group">
+        <button type="submit" [disabled]="loading" class="btn-primary">
+          {{ loading ? 'Creando...' : 'Crear Tarea' }}
+        </button>
+        <button type="button" (click)="goBack()" class="btn-secondary">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
