@@ -7,7 +7,7 @@ import { LoginRequest, LoginResponse, RegisterRequest, User } from '../models/us
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = "http://172.25.32.37:5000/api";
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser$: Observable<User | null>;
 
