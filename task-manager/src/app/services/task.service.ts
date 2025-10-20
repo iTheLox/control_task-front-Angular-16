@@ -7,7 +7,7 @@ import { Task, TaskResponse, CreateTaskRequest, UpdateTaskRequest } from '../mod
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = "http://172.25.32.37:5000/api";
 
   constructor(private http: HttpClient) { }
 
